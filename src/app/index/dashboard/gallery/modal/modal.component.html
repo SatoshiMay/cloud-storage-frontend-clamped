@@ -1,0 +1,8 @@
+<div class="img-modal" [style.display]="display">
+  <!-- The Close Button -->
+  <span class="img-modal-close" (click)="close.emit()">&times;</span>
+  <!-- Modal Image -->
+  <div class="img-modal-content">
+    <img class="img-fluid" [src]="src? src : '#'">
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-3"> </div>
+    <!-- Gallery     -->
+    <div class="col-6">
+      <!-- <div class="card border-secondary"> -->
+      <!-- <div class="card-body"> -->
+      <!-- <div class="row no-gutters"> -->
+      <!-- <div class="col-4" *ngFor="let item of galleryItems$ | async; let i = index" (click)="gallery.open(i)"> -->
+      <div class="img-row">
+        <div class="img-col" *ngFor="let item of galleryItems$ | async; let i = index">
+          <button type="button" class="btn btn-link" (click)="modalSrc=item.src; modalDisplay='block'">
+          <img class="img-fluid" [src]="item.src">
+          </button>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- </div> -->
+    </div>
+    <!-- Upload button -->
+    <div class="col-3" *ngIf="isSelf$ | async">
+      <div class="card bg-light w-75 ml-auto text-center">
+        <div class="text-muted small pb-1">
+          0.5 of 1GB used
+        </div>
+        <label for="fileElem" class="btn btn-light btn-block btn-sm mb-0">
+          <i class="fa fa-upload" aria-hidden="true"></i> Upload
+        </label>
+        <input class="d-none" type="file" id="fileElem" #fileElem (change)="upload(fileElem.files)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<app-modal [src]="modalSrc" [display]="modalDisplay" (close)="modalDisplay='none'"></app-modal>

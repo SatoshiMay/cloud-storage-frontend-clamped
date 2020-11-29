@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+
+    <div class="col-6">
+      <div class="row no-gutters">
+        <div class="col-6 bg-white border" *ngFor="let friend of friends$ | async">
+          <li class="media my-1">
+            <button class="btn btn-link" (click)="clicked(friend._id)">
+              <img class="mr-3 avatar rounded-circle" [src]="friend.avatar" alt="Avatar">
+            </button>
+            <div class="media-body">
+              <a [routerLink]="['/users', friend._id]" class="a-no-deco">
+                {{ friend.firstName }} {{ friend.lastName }}
+              </a>
+            </div>
+          </li>
+        </div>
+      </div>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>

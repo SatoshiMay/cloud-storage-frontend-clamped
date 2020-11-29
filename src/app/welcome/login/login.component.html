@@ -1,0 +1,9 @@
+<form class="form-inline my-2 ml-auto" (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
+  <input formControlName="Username" class="form-control form-control-sm mr-2" type="text" placeholder="Username or Email">
+  <div class="d-flex flex-column">
+    <input formControlName="Password" class="form-control form-control-sm mr-2 mt-4" type="password" placeholder="Password">
+    <a href="#"> <small class="form-text text-light">Forgot Password?</small> </a>
+  </div>
+
+  <button class="btn btn-sm btn-secondary" type="submit">Login</button>
+</form>

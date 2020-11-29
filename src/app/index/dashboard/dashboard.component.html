@@ -1,0 +1,28 @@
+<div class="jumbotron py-5">
+  <div class="media" *ngIf="profile">
+    <img class="mr-3 jumbotron-img rounded" [src]="profile.avatar">
+    <div class="media-body align-self-end">
+      <h1 class="mt-0">{{ profile.firstName}} {{ profile.lastName }}</h1>
+
+      <ul class="nav">
+        <li class="nav-item border bg-secondary">
+          <a class="nav-link text-light" [routerLink]="['/users', profile._id, 'posts']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            Posts
+          </a>
+        </li>
+        <li class="nav-item border bg-secondary">
+          <a class="nav-link text-light" [routerLink]="['/users', profile._id, 'friends']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            Friends
+          </a>
+        </li>
+        <li class="nav-item  border bg-secondary">
+          <a class="nav-link text-light" [routerLink]="['/users', profile._id, 'gallery']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            Photos
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

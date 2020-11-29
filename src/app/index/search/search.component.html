@@ -1,0 +1,28 @@
+<div class="search-container">
+
+  <!-- Search box -->
+  <div class="input-group">
+    <input type="text" class="form-control form-control-sm form-inline" placeholder="Search" [formControl]="term" (keyup)="search()" (blur)="clear()">
+    <div class="input-group-append">
+      <span class="input-group-text">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- Search results -->
+  <div class="search-list w-100 bg-white mt-1 rounded" *ngFor="let user of users$ | async">
+    <ul class="list-unstyled mb-0">
+      <!-- <a [routerLink]="['/users', user.sub]"> -->
+      <button class="btn btn-link" (click)="clicked(user._id)">
+        <li class="media">
+          <img class="mr-3 avatar rounded" [src]="user.avatar" alt="Generic placeholder image">
+          <div class="media-body align-self-center">
+            {{ user.firstName }} {{ user.lastName }}
+          </div>
+        </li>
+      </button>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,77 @@
+<div class="container" appInfiniteScroller (scrolled)="onScroll()">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 px-4">
+      <!-- All posts -->
+      <div *ngFor="let post of posts$ | async; let i = index">
+
+        <!-- Original post -->
+        <div class="media mt-4 p-3 border">
+          <img class="mr-3 avatar rounded-circle" [src]="post.from.avatar" alt="Generic placeholder image">
+          <div class="media-body">
+            <div class="d-flex">
+              <a [routerLink]="['/users', post.from._id]" class="a-no-deco">
+                <h5>{{ post.from.firstName }} {{ post.from.lastName }}</h5>
+              </a>
+              <span class="text-muted ml-3">
+                {{ post.created | date }}
+              </span>
+            </div>
+            {{ post.message }}
+          </div>
+        </div>
+
+        <!-- Icons -->
+        <div class="d-flex flex-row justify-content-around align-items-baseline border-icons-bar bg-light-gray py-2">
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+          <a routerLink="./" fragment="comment-{{i}}">
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+          </a>
+          <i class="fa fa-share-square-o" aria-hidden="true"></i>
+        </div>
+        <div class="border border-light bg-light-gray">
+
+          <div class="d-flex flex-row justify-content-between align-items-center">
+            <!-- Likes -->
+            <div class="p-2">
+              <i class="fa fa-thumbs-up text-primary" aria-hidden="true"></i>
+              {{ post.likes }}
+            </div>
+            <!-- Toggle Replies -->
+            <div *ngIf="post.replies?.length">
+              <button class="btn btn-link btn-sm" type="button" data-toggle="collapse" attr.data-target=".replies-{{i}}">
+                toggle comments
+              </button>
+            </div>
+          </div>
+
+          <!-- Replies -->
+          <div attr.class="replies replies-{{i}} show" *ngFor="let reply of post.replies">
+            <div class="media p-2">
+              <img class="mr-3 avatar rounded-circle" [src]="reply.from.avatar" alt="Generic placeholder image">
+              <div class="media-body">
+                <div class="d-flex">
+                  <a [routerLink]="['/users', reply.from._id]" class="a-no-deco">
+                    <h6>{{ reply.from.firstName }} {{ reply.from.lastName }}</h6>
+                  </a>
+                  <span class="text-muted ml-3">
+                    {{ reply.created | date }}
+                  </span>
+                </div>
+                <div class="text-muted"> {{ reply.message }} </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input box -->
+          <div>
+            <input type="text" [formControl]="reply" (keyup.enter)="submit(post._id)" id="comment-{{i}}" class="form-control mx-auto my-3 input-width"
+              placeholder="Comment">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
